@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuessNum</title>   
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
+</head>
+<body onload="onCleanClick()">
+    <div id="canvas-set">
+        <canvas></canvas>
+        <input id="line-width" class="form-range" type="range" min="20" max="60" step="5" value="40" />
+        <form method="post" action="{% url 'mnistEx:guess' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input id="guess-input" name="img" type="hidden" value="" />
+            <button id="guess-btn" class="btn btn-info" type="submit" style="width:100%">Guess</button>
+        </form>
+        <button id="clean-btn" class="btn btn-outline-info" type="button">Clean</button>
+        <button id="eraser-btn" class="btn btn-outline-info" type="button">Erase</button>
+    </div>
+    <div id="guess-set">
+        <div>
+            <h1 style="font-weight:800">Guess: <span>{{ predict }}</span></h1>
+            <hr>
+        </div>
+        <img src="data:image/png;base64,{{ image }}" alt="" />
+    </div>
+    <script type="text/javascript" src="/static/js/canvas.js"></script>
+</body>
+</html>
