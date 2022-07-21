@@ -25,7 +25,11 @@
             <h1 style="font-weight:800">Guess: <span>{{ predict }}</span></h1>
             <hr>
         </div>
-        <img src="data:image/png;base64,{{ image }}" alt="" />
+        {% if image %}
+            <img src="data:image/png;base64,{{ image }}" alt="" />
+        {% else %}
+            <h1 style="color: gray; font-weight: 800">Draw Your Number!</h1>
+        {% endif %}
     </div>
     <script type="text/javascript" src="/static/js/canvas.js"></script>
 </body>
